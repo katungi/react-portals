@@ -1,8 +1,8 @@
 import React from 'react'
-
+import ReactDom from 'react-dom'
 export default function Modal({open, children, onClose}) {
  if(!open) return null;
-  return(
+  return ReactDom.createPortal(
     <>
     <div className='fixed top-0 left-0 right-0 bottom-0' style={{
       zIndex: 1000,
@@ -12,6 +12,7 @@ export default function Modal({open, children, onClose}) {
         <button onClick={onClose}>Close Modal</button>
         {children}
     </div>
-    </>
+    </>,
+    document.getElementById('portal')
   )
 }
